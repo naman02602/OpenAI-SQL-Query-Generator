@@ -1,19 +1,8 @@
 import snowflake.connector
-# import os
 import sys
-# from dotenv import load_dotenv
-
-# load_dotenv()
-
-# # Connection parameters
-# account = os.getenv('account')
-# user = os.getenv('user')
-# password = os.getenv('password')
-# warehouse = os.getenv('warehouse')
-# database = os.getenv('database')
-# schema = os.getenv('schema')
 
 # Connection parameters
+print(sys.argv)
 account = sys.argv[1]
 user = sys.argv[2]
 password = sys.argv[3]
