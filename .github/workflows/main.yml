@@ -25,29 +25,6 @@ jobs:
 
       - name: Install Python packages
         run: pip install -r requirements.txt
-
-      # - name: Install SnowSQL
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y curl
-      #     echo download now
-      #     curl -O https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowsql-1.2.29-linux_x86_64.bash
-      #     echo  downloaded
-      #     chmod +x snowsql-1.2.29-linux_x86_64.bash
-      #     echo run script
-      #     sudo ./snowsql-1.2.29-linux_x86_64.bash
-      #     echo ran
-
-      # - name: Install SnowSQL
-      #   run:
-      #     wget https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowsql-1.2.30-linux_x86_64.bash
-          
-      # - name: Run bash
-      #   run:
-      #     bash snowsql-1.2.30-linux_x86_64.bash > snowsql_installation.log 2>&1
-
-      # - name: Set PATH for SnowSQL
-      #   run: echo "PATH=$PATH:/path/to/snowsql" >> $GITHUB_EN
       
       - name: Configure snowcli
         env:
@@ -57,6 +34,8 @@ jobs:
           SNOWSQL_ROLE: ${{ secrets.SNOWSQL_ROLE }}
           SNOWSQL_WAREHOUSE: ${{ secrets.SNOWSQL_WAREHOUSE }}
           SNOWSQL_DATABASE: ${{ secrets.SNOWSQL_DATABASE }}
+          SCHEMA_NAME: ${{ secrets.SCHEMA_NAME }}
+          
         run: |
           cd $GITHUB_WORKSPACE
           echo "[connections.dev]" > config
@@ -69,7 +48,14 @@ jobs:
 
       - name: Deploy Snowpark apps
         run: 
-          # ./runsql.sh
+          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/teardown.sql
+          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/setup_snow.sql
           python deploy.py $GITHUB_WORKSPACE
-          # ./runall.sh
+          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/load_raw.sql
+          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/data_cleaning.sql
+          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/airport_crowd.sql
+          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/hourly_crowd.sql
+          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/carbon_footprint.sql
+          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/seat_occupancy.sql         
+          
         
