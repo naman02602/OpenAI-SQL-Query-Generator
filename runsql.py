@@ -1,22 +1,18 @@
 import snowflake.connector
 import sys
-import os
+import configparser
+
+# Read Snowflake config from file
+config = configparser.ConfigParser()
+config.read(sys.argv[1] + '/config')  # Change 'config' to the path of your config file
 
 # Connection parameters
-account = os.environ.get("SNOWSQL_ACCOUNT")
-user = os.environ.get("SNOWSQL_USER")
-password = os.environ.get("SNOWSQL_PWD")
-warehouse = os.environ.get("SNOWSQL_WAREHOUSE")
-database = os.environ.get("SNOWSQL_DATABASE")
-schema = os.environ.get("SCHEMA_NAME")
-
-# print(sys.argv)
-# account = sys.argv[1]
-# user = sys.argv[2]
-# password = sys.argv[3]
-# warehouse = sys.argv[4]
-# database = sys.argv[5]
-# schema = sys.argv[6]
+account = config.get('connections.dev', 'accountname')
+user = config.get('connections.dev', 'username')
+password = config.get('connections.dev', 'password')
+warehouse = config.get('connections.dev', 'warehousename')
+database = config.get('connections.dev', 'dbname')
+schema = 'PUBLIC'
 
 # Establish a connection
 conn = snowflake.connector.connect(

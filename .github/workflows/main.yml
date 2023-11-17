@@ -50,14 +50,14 @@ jobs:
         run: |
           echo ${{ secrets.SNOWSQL_ACCOUNT }}
           echo $SNOWSQL_ACCOUNT
-          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/teardown.sql
-          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/setup_snow.sql
+          python runsql.py $GITHUB_WORKSPACE modules/teardown.sql
+          python runsql.py $GITHUB_WORKSPACE modules/setup_snow.sql
           python deploy.py $GITHUB_WORKSPACE
-          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/load_raw.sql
-          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/data_cleaning.sql
-          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/airport_crowd.sql
-          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/hourly_crowd.sql
-          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/carbon_footprint.sql
-          python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/seat_occupancy.sql         
+          python runsql.py $GITHUB_WORKSPACE modules/load_raw.sql
+          python runsql.py $GITHUB_WORKSPACE modules/data_cleaning.sql
+          python runsql.py $GITHUB_WORKSPACE modules/airport_crowd.sql
+          python runsql.py $GITHUB_WORKSPACE modules/hourly_crowd.sql
+          python runsql.py $GITHUB_WORKSPACE modules/carbon_footprint.sql
+          python runsql.py $GITHUB_WORKSPACE modules/seat_occupancy.sql         
           
         
