@@ -6,6 +6,7 @@
 2. Jagruti Agrawal: [Github Link](https://github.com/Jagruti1906/sfguide-data-engineering-with-snowpark-python)
 3. Divyesh Rajput: [Github Link](https://github.com/rajputdi/sfguide-data-engineering-with-snowpark-python)
 
+# Part B:
 
 Link to the application:
 
@@ -28,7 +29,13 @@ Testing the system is imperative, involving the creation of at various test case
 ![image](https://github.com/BigDataIA-Fall2023-Team4/Assignment_04/assets/113845871/6daa4aac-c6dd-433c-964a-a0a9b5d836bc)
 ![image](https://github.com/BigDataIA-Fall2023-Team4/Assignment_04/assets/113845871/16ac2730-56b4-4df3-bcc2-d0f7c207bf63)
 
+# Architecture Diagram:
 
+Streamlit Application Flow:
+![image](https://github.com/BigDataIA-Fall2023-Team4/Assignment_04/blob/main/Diagrams/streamlit_app_1.png)
+
+Snowflake Flow:
+![image](https://github.com/BigDataIA-Fall2023-Team4/Assignment_04/blob/main/Diagrams/snowflake_flow.png)
 
 # Technologies Used:
 
