@@ -23,9 +23,17 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Install SnowSQL
+        run: |
+          wget https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowsql-1.2.30-linux_x86_64.bash
+          bash snowsql-1.2.30-linux_x86_64.bash > snowsql_installation.log 2>&1
+
       - name: Install Python packages
         run: pip install -r requirements.txt
 
+      - name: Set PATH for SnowSQL
+        run: echo "PATH=$PATH:/path/to/snowsql" >> $GITHUB_EN
+      
       - name: Configure snowcli
         env:
           SNOWSQL_ACCOUNT: ${{ secrets.SNOWSQL_ACCOUNT }}
@@ -43,14 +51,6 @@ jobs:
           echo "rolename = $SNOWSQL_ROLE" >> config
           echo "warehousename = $SNOWSQL_WAREHOUSE" >> config
           echo "dbname = $SNOWSQL_DATABASE" >> config
-
-      - name: Install SnowSQL
-        run: |
-          wget https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowsql-1.2.30-linux_x86_64.bash
-          bash snowsql-1.2.30-linux_x86_64.bash > snowsql_installation.log 2>&1
-
-      - name: Set PATH for SnowSQL
-        run: echo "PATH=$PATH:/path/to/snowsql" >> $GITHUB_ENV
 
       - name: Deploy Snowpark apps
         run: 
