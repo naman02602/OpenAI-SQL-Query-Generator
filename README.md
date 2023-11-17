@@ -13,6 +13,13 @@ The integration of Snowflake with Streamlit adds another layer for the user. The
 
 Testing the system is imperative, involving the creation of at various test cases. These tests covers scenarios where SQL code generation works seamlessly, where it fails initially but can be corrected with query prompt modifications, and where failures persist despite multiple attempts. The final deployment phase involves deploying the application to a public cloud platform, Streamlit Cloud, ensuring public access. This introduces challenges related to scalability, security, and reliability that need careful consideration to guarantee a successful and user-friendly deployment.
 
+![image](https://github.com/BigDataIA-Fall2023-Team4/Assignment_04/assets/113845871/07555b00-6e04-4f5a-82e0-bcbb60e8f85b)
+![image](https://github.com/BigDataIA-Fall2023-Team4/Assignment_04/assets/113845871/b7d7147e-5004-49ae-8551-3ab59a0da150)
+![image](https://github.com/BigDataIA-Fall2023-Team4/Assignment_04/assets/113845871/6daa4aac-c6dd-433c-964a-a0a9b5d836bc)
+![image](https://github.com/BigDataIA-Fall2023-Team4/Assignment_04/assets/113845871/16ac2730-56b4-4df3-bcc2-d0f7c207bf63)
+
+
+
 # Technologies Used:
 
 1. GitHub
