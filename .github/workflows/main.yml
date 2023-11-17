@@ -30,9 +30,13 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y curl
+          echo download now
           curl -O https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowsql-1.2.29-linux_x86_64.bash
+          echo  downloaded
           chmod +x snowsql-1.2.29-linux_x86_64.bash
+          echo run script
           sudo ./snowsql-1.2.29-linux_x86_64.bash
+          echo ran
       
       # - name: Install SnowSQL
       #   run:
