@@ -47,7 +47,7 @@ jobs:
           echo "dbname = $SNOWSQL_DATABASE" >> config
 
       - name: Deploy Snowpark apps
-        run: 
+        run: |
           python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/teardown.sql
           python runsql.py $SNOWSQL_ACCOUNT $SNOWSQL_USER $SNOWSQL_PWD $SNOWSQL_WAREHOUSE $SNOWSQL_DATABASE $SCHEMA_NAME modules/setup_snow.sql
           python deploy.py $GITHUB_WORKSPACE
