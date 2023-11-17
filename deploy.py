@@ -9,21 +9,23 @@ if len(sys.argv) != 2:
 
 root_directory = sys.argv[1]
 print(f"Deploying all Snowpark apps in root directory {root_directory}")
+print(os.walk(root_directory))
 
 # Walk the entire directory structure recursively
 for (directory_path, directory_names, file_names) in os.walk(root_directory):
     # Get just the last/final folder name in the directory path
+    print(directory_path, directory_names, file_names)
     base_name = os.path.basename(directory_path)
 
     # Skip any folders we want to ignore
     if base_name in ignore_folders:
-#        print(f"Skipping ignored folder {directory_path}")
+        print(f"Skipping ignored folder {directory_path}")
         continue
 
     # An app.toml file in the folder is our indication that this folder contains
     # a snowcli Snowpark App
     if not "app.toml" in file_names:
-#        print(f"Skipping non-app folder {directory_path}")
+        print(f"Skipping non-app folder {directory_path}")
         continue
 
     # Next determine what type of app it is
