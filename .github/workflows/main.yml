@@ -22,17 +22,30 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
-      - name: Install SnowSQL
-        run:
-          wget https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowsql-1.2.30-linux_x86_64.bash
           
-      - name: Run bash
-        run:
-          bash snowsql-1.2.30-linux_x86_64.bash > snowsql_installation.log 2>&1
-
       - name: Install Python packages
         run: pip install -r requirements.txt
+        
+      - name: Install Docker
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker.io
+
+      - name: Pull SnowSQL Docker Image
+        run: docker pull snowsql:1.2.30-linux_x86_64
+      - name: Install SnowSQL
+        run: |
+          docker run -v $PWD:/workspace snowsql:1.2.30-linux_x86_64 bash -c 'bash /workspace/snowsql-1.2.30-linux_x86_64.bash > /workspace/snowsql_installation.log 2>&1'
+
+      # - name: Install SnowSQL
+      #   run:
+      #     wget https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowsql-1.2.30-linux_x86_64.bash
+          
+      # - name: Run bash
+      #   run:
+      #     bash snowsql-1.2.30-linux_x86_64.bash > snowsql_installation.log 2>&1
+
+      
 
       - name: Set PATH for SnowSQL
         run: echo "PATH=$PATH:/path/to/snowsql" >> $GITHUB_EN
