@@ -27,7 +27,7 @@ conn = snowflake.connector.connect(
 cursor = conn.cursor()
 
 # Read SQL script from file
-with open(sys.argv[1], 'r') as file:
+with open(sys.argv[2], 'r') as file:
     sql_script = file.read()
 
 # Split the script into individual statements
