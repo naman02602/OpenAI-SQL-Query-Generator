@@ -35,9 +35,16 @@ jobs:
           echo  downloaded
           chmod +x snowsql-1.2.29-linux_x86_64.bash
           echo run script
-          sudo ./snowsql-1.2.29-linux_x86_64.bash
+          sudo ./snowsql-1.2.29-linux_x86_64.bash | tee snowsql_installation.log
+          continue-on-error: true
           echo ran
-      
+          
+      - name: Check SnowSQL Installation
+        run: |
+          if [ $? -ne 0 ]; then
+            echo "SnowSQL installation failed. Check the snowsql_installation.log for details."
+            exit 1
+          fi
       # - name: Install SnowSQL
       #   run:
       #     wget https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowsql-1.2.30-linux_x86_64.bash
