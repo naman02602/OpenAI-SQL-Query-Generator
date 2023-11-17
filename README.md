@@ -1,5 +1,6 @@
 # Assignment_04
 Link to the application:
+[Streamlit](https://wasgwogpfkl5yto2awpmjd.streamlit.app/)
 
 [Codelab]()
 
