@@ -1,4 +1,4 @@
-# Assignment_04
+# OpenAI-SQL-Query-Generator
 
 # Part A:
 
@@ -105,8 +105,8 @@ Snowflake Flow:
 
 # Team Contribution:
 
-| Name            | Contribution % | Contributions |
-|-----------------|----------------|---------------|
-| Naman Gupta     |     33.3%      |  Dataset Exploration, Use Case building, SQL Processes & UDF Creation, CI-CD pipeline     |
-| Jagruti Agrawal |     33.3%      |  Dataset Exploration, Use Case building, SQL Processes & UDF Creation, Architecture development            |
-| Divyesh Rajput  |     33.3%      |  Dataset Exploration, Use Case building, Chat-bot development with Langchain & OpenAI          |
+| Name            | Contribution % |
+|-----------------|----------------|
+| Naman Gupta     |     33.3%      |
+| Jagruti Agrawal |     33.3%      |
+| Divyesh Rajput  |     33.3%      |
